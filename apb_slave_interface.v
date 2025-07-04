@@ -158,7 +158,7 @@ assign PRDATA = (!rd_enb) ? 8'b0 :
                 (PADDR == 3'b010) ? SPI_BR :
                 (PADDR == 3'b011) ? SPI_SR : SPI_DR;
 
-//senddata
+//send_data
 always @(posedge PCLK or negedge PRESETn )
  begin
 	if (!PRESETn)
@@ -168,7 +168,7 @@ always @(posedge PCLK or negedge PRESETn )
 		if (run_or_wait &&(SPI_DR==PWDATA) &&(SPI_DR!=miso_data))
 			send_data<=1'b1;
 		else
-			begin //remove this block if diagram wrong 0 0 in mux
+			begin 
 			if (receive_data && run_or_wait)
 				send_data<=0;
 			else
